@@ -1,14 +1,16 @@
 def lintChecks(COMPONENT) {
         sh "echo Installing mvn"
         // sh "yum install maven -y"
-        // sh "ls -ltr node_modules/jslint/bin/"
+        // sh "mvn checkstyle:check"
         sh "echo lint checks completed for ${COMPONENT}.....!!!!!"
 }
+
+
 
 def call(COMPONENT)                                              // call is the default function that's called by default.
 {
     pipeline {
-        agent any 
+        agent nodejs 
         stages {                                        // Start of Stages
             stage('Lint Checks') {
                 steps {
@@ -17,6 +19,9 @@ def call(COMPONENT)                                              // call is the 
                     }
                 }
             }
+
+
+
             stage('Downloading the dependencies') {
                 steps {
                     sh "npm install"
