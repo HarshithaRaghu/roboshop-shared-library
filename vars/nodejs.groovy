@@ -41,7 +41,9 @@ def call(COMPONENT)                                              // call is the 
                     sh "npm install"
                 }
             }
-        } // End of Stages
+        } 
+        
+        
     }
 }
 
