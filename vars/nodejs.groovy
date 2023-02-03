@@ -17,7 +17,7 @@ def call(COMPONENT)                                              // call is the 
         agent any 
         environment {
             SONAR = credentials('SONAR')
-            SONAR_URL = "172.31.4.149"
+            SONAR_URL = "172.31.12.196"
         }
         stages {                                        // Start of Stages
             stage('Lint Checks') {
