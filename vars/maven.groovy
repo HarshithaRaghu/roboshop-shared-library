@@ -56,6 +56,9 @@ def call(COMPONENT)                                              // call is the 
                 }
 
         stage('Downloading the dependencies') {
+                when { 
+                    expression { env.TAG_NAME != null } 
+                }
                 steps {
                     sh "mvn clean package"
                 }
