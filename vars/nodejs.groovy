@@ -56,10 +56,25 @@ def call(COMPONENT)                                              // call is the 
                 }
 
             stage('Downloading the dependencies') {
+                when { 
+                    expression { env.TAG_NAME != null } 
+                }
                 steps {
                     sh "npm install"
                 }
             }
+           
+           stage('Uploading the artifact') {
+                when { 
+                    expression { env.TAG_NAME != null } 
+                    }
+                steps {
+                    sh "echo uploading artifact to nexus"
+                }
+            }
+        
+        
+        
         } 
         
         
