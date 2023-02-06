@@ -103,6 +103,6 @@ def call(COMPONENT)                                              // call is the 
 //                 }
 //             }
         
-//         } // End of Stages
-//     }
-// }
+        } // End of Stages
+    }
+}
