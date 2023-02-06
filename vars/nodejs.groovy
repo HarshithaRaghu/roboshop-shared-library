@@ -74,6 +74,7 @@ def call(COMPONENT)                                              // call is the 
             stage('Downloading the dependencies') {
                 when { 
                     expression { env.TAG_NAME != null } 
+                    expression { env.UPLOAD_STATUS == "" }
                 }
                 steps {
                     sh "npm install"
