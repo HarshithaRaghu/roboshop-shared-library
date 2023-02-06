@@ -33,7 +33,7 @@ def sonarChecks(COMPONENT) {
                       sh "echo lint checks completed for ${COMPONENT}.....!!!!!"
           }
           else 
-                     sh "echo performing generic lint cheks"
+                     s "echo performing generic lint cheks"
     }
 }
 
