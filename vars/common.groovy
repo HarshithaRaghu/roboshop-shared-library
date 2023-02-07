@@ -68,7 +68,7 @@ def artifacts() {
        stage('Artifact Validation On Nexus') {
               sh "echo checking whether artifact exists of not. If it doesnt exist then only proceed with Preparation and Upload"
                    env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -L -s http://172.31.7.27:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true" )
-       }      }
+       }      
 
        if(env.UPLOAD_STATUS == "") {
               stage('Preparing the artifacts') {
@@ -101,6 +101,7 @@ def artifacts() {
                             '''
                      }
               }
+      }
               stage('Uploading Artifacts') {
                      withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'NEXUS_PSW', usernameVariable: 'NEXUS_USR')]) {
                             sh "curl -f -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.7.27:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip"
