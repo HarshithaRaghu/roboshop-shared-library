@@ -32,7 +32,7 @@ def sonarChecks() {
                      // sh pylist filename.py
                      sh "echo lint checks completed for ${COMPONENT}.....!!!!!"        
           }
-          else if(env.APP = "angularjs") {
+          else if(env.APP == "angularjs") {
                       sh "echo Installing ANGULAR LINT"
                       sh "echo lint checks completed for ${COMPONENT}.....!!!!!"
           }
