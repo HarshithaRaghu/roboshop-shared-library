@@ -66,7 +66,7 @@ def testCases() {
 def artifacts() {
        stage('Artifact Validation On Nexus') {
               sh "echo checking whether artifact exists of not. If it doesnt exist then only proceed with Preparation and Upload"
-                   env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true" )
+                   env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -L -s http://172.31.7.27:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true" )
        }
 
        if(env.UPLOAD_STATUS == "") {
