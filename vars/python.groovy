@@ -1,7 +1,9 @@
 def call() {
     node {
+        sh "rm -rf *"
+        git branch: 'main', url: "https://github.com/HarshithaRaghu/${COMPONENT}.git"
         env.APP = "python"
-        lintChecks()
+        common.lintChecks()
         env.ARGS="-Dsonar.sources=."
         common.sonarChecks()  
         common.testCases() 
