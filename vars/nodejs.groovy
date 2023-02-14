@@ -8,6 +8,8 @@ def lintChecks(COMPONENT) {
 
 def call() {
     node {
+        sh "rm -rf *"
+        git branch: 'main', url: "https://github.com/HarshithaRaghu/${COMPONENT}.git"
         env.APP = "nodejs"
         lintChecks()
         env.ARGS="-Dsonar.sources=."
