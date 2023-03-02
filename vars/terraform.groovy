@@ -28,6 +28,7 @@ def call() {
         stage('Terraform Plan') {
                 sh ''' 
                        cd ${TF_DIRECTORY}
+                       export TF_VAR_APP_VERSION=${APP_VERSION}
                        terraform plan -var-file=env-${ENV}/${ENV}.tfvars 
                    '''            
             }
@@ -35,6 +36,7 @@ def call() {
         stage('Terraform Action') {
                 sh ''' 
                         cd ${TF_DIRECTORY}
+                        export TF_VAR_APP_VERSION=${APP_VERSION}
                         terraform ${ACTION} -var-file=env-${ENV}/${ENV}.tfvars -auto-approve
                    '''            
             }            
