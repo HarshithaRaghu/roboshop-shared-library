@@ -7,15 +7,15 @@ def call() {
     properties(
         [
             parameters([
-                    choice(name: 'ENV', choices: 'dev\nprod' , description: 'Chose an environment' ),
-                    choice(name: 'ACTION', choices: 'apply\ndestroy' , description: 'Chose action to be apply or destroy'),
-                    // string(name: 'APP_VERSION', choices: 'APP_VERSION' , description: 'Chose the app version to be deployed IGNORE THIS VALUE FOR INFRA')
+                choice(choices: 'dev\nprod', description: "Chose the Env", name: "ENV"),
+                choice(choices: 'apply\ndestroy', description: "Choose apply or destroy", name: "ACTION"),
+                string(choices: 'APP_VERSION', description: "Enter the version to deploy", name: "APP_VERSION"),
             ])   
         ])
     node {
         ansiColor('xterm') {
         sh "rm -rf *"
-        git branch: 'main', url: "https://github.com/HarshithaRaghu/${REPONAME}.git"
+        git branch: 'main', url: "https://github.com/b52-clouddevops/${REPONAME}.git"
         
         stage('Terraform Init') {
                 sh ''' 
@@ -29,7 +29,7 @@ def call() {
                 sh ''' 
                        cd ${TF_DIRECTORY}
                        export TF_VAR_APP_VERSION=${APP_VERSION}
-                       terraform plan -var-file=env-${ENV}/${ENV}.tfvars 
+                       terraform plan -var-file=env-${ENV}/${ENV}.tfvars
                    '''            
             }
 
